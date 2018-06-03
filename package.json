@@ -2,12 +2,14 @@
   "name": "home-finance-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://maxpenderuk.github.io/home-finance-app",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.0.20",
     "bootstrap": "4.1.1",
     "firebase": "^5.0.4",
+    "gh-pages": "^1.2.0",
     "livr": "^2.1.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
@@ -20,10 +22,11 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
-    "sweetalert-react": "^0.4.11",
-    "uuid": "^3.2.1"
+    "sweetalert-react": "^0.4.11"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

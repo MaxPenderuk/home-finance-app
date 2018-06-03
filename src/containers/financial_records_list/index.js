@@ -138,18 +138,16 @@ export class FinancialRecordsList extends Component {
 
   render() {
     const { list, isLoading } = this.props.financialRecords;
+    const loadedContent = list.length
+      ? this.renderDataTable(list)
+      : this.renderNoRecordsBlock();
 
     return (
       <Fragment>
         {
           isLoading
             ? <div className='spinner-wrap'><div className='spinner'/></div>
-            : null
-        }
-        {
-          list.length
-            ? this.renderDataTable(list)
-            : this.renderNoRecordsBlock()
+            : loadedContent
         }
       </Fragment>
     );

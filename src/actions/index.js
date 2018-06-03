@@ -1,26 +1,32 @@
 import firebase from '../utils/firebase';
 
-export const LOAD_FINANCIAL_RECORDS    = 'LOAD_FINANCIAL_RECORDS';
-export const ADD_FINANCIAL_RECORD      = 'ADD_FINANCIAL_RECORD';
-export const FINANCIAL_RECORDS_LOADING = 'FINANCIAL_RECORDS_LOADING';
-export const REMOVE_FINANTIAL_RECORD   = 'REMOVE_FINANTIAL_RECORD';
+export const LOAD_FINANCIAL_RECORDS        = 'LOAD_FINANCIAL_RECORDS';
+export const ADD_FINANCIAL_RECORD          = 'ADD_FINANCIAL_RECORD';
+export const FINANCIAL_RECORDS_LOADING     = 'FINANCIAL_RECORDS_LOADING';
+export const REMOVE_FINANTIAL_RECORD       = 'REMOVE_FINANTIAL_RECORD';
+export const LOAD_FINANCIAL_RECORDS_ERROR  = 'LOAD_FINANCIAL_RECORDS_ERROR';
+export const ADD_FINANCIAL_RECORD_ERROR    = 'ADD_FINANCIAL_RECORD_ERROR';
+export const REMOVE_FINANTIAL_RECORD_ERROR = 'REMOVE_FINANTIAL_RECORD_ERROR';
 
 export function loadFinancialRecords() {
   return async dispatch => {
-    try {
-      dispatch({
-        type: FINANCIAL_RECORDS_LOADING
-      });
+    dispatch({
+      type: FINANCIAL_RECORDS_LOADING
+    });
 
-      const data = await firebase.getFinancialRecords();
+    const data = await firebase.getFinancialRecords();
 
+    if (data.status) {
       dispatch({
         type: LOAD_FINANCIAL_RECORDS,
-        payload: data || []
+        payload: data.financialRecords
       });
-    } catch (err) {
-      console.error('loadFinancialData error: ', err);
     }
+
+    dispatch({
+      type: LOAD_FINANCIAL_RECORDS_ERROR,
+      error: data.error,
+    });
   };
 }
 
@@ -32,40 +38,40 @@ export function addFinancialRecord({
   createdAt
 }) {
   return async dispatch => {
-    try {
-      const financialRecord = {
-        type,
-        currency,
-        sum,
-        description,
-        createdAt
-      };
-      const symbolicKey = await firebase.setFinancialRecord(financialRecord);
+    const financialRecord = { type, currency, sum, description, createdAt };
+    const data = await firebase.setFinancialRecord(financialRecord);
 
+    if (data.status) {
       dispatch({
         type: ADD_FINANCIAL_RECORD,
         payload: {
           ...financialRecord,
-          symbolicId: symbolicKey
+          symbolicId: data.financialRecordId
         }
       });
-    } catch (err) {
-      console.error('addFinancialRecord error: ', err);
     }
+
+    dispatch({
+      type: ADD_FINANCIAL_RECORD_ERROR,
+      error: data.error
+    });
   };
 }
 
 export function removeFinancialRecord(id) {
   return async dispatch => {
-    try {
-      await firebase.removeFinancialRecord(id);
+    const data = await firebase.removeFinancialRecord(id);
 
+    if (data.status) {
       dispatch({
         type: REMOVE_FINANTIAL_RECORD,
         payload: { id }
       });
-    } catch (err) {
-      console.error('removeFinancialRecord error: ', err);
     }
+
+    dispatch({
+      type: REMOVE_FINANTIAL_RECORD_ERROR,
+      error: data.error
+    });
   };
 }

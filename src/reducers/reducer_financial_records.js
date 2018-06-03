@@ -2,7 +2,10 @@ import {
   LOAD_FINANCIAL_RECORDS,
   FINANCIAL_RECORDS_LOADING,
   ADD_FINANCIAL_RECORD,
-  REMOVE_FINANTIAL_RECORD
+  REMOVE_FINANTIAL_RECORD,
+  LOAD_FINANCIAL_RECORDS_ERROR,
+  ADD_FINANCIAL_RECORD_ERROR,
+  REMOVE_FINANTIAL_RECORD_ERROR
 } from '../actions/index';
 
 const DEFAULT_STATE = {
@@ -22,7 +25,7 @@ export default function financialRecords(state = DEFAULT_STATE, action) {
       return {
         ...state,
         list: action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case ADD_FINANCIAL_RECORD:
       return {
@@ -33,6 +36,13 @@ export default function financialRecords(state = DEFAULT_STATE, action) {
       return {
         ...state,
         list: state.list.filter(r => r.symbolicId !== action.payload.id)
+      };
+    case LOAD_FINANCIAL_RECORDS_ERROR:
+    case ADD_FINANCIAL_RECORD_ERROR:
+    case REMOVE_FINANTIAL_RECORD_ERROR:
+      return {
+        ...state,
+        error: action.error
       };
     default:
       return state;

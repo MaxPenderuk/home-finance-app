@@ -6,6 +6,18 @@
   justify-content: flex-end;
 }
 
+label { margin-bottom: 0 !important; }
+
+.currency-switch-form input {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
 .fa-arrow-right {
   font-size: 11px;
+}
+
+@media (max-width: 576px) {
+  .currency-switch-form input { width: 20%; }
 }

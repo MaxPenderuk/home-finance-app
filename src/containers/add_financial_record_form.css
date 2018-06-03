@@ -3,3 +3,9 @@
 .finance-type-select { width: 100%; }
 
 .btn { width: 100%; }
+
+@media (max-width: 576px) {
+  .financial-record-form .Select, input, button {
+    font-size: 14px !important;
+  }
+}

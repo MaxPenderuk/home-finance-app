@@ -78,3 +78,12 @@
   border-radius: 50%;
   animation: spin 2s linear infinite;
 }
+
+@media (max-width: 576px) {
+  .table td { font-size: 12px; }
+  .table tr td:nth-child(3), td:nth-child(4) {padding: 0 !important; width: 20%;} 
+}
+
+@media (max-width: 337px) {
+  .table .arrow-up, .arrow-down { background-size: 100% auto; }
+}

@@ -67,7 +67,7 @@ export class CurrencySwitchForm extends Component {
     }, this.setConversionData);
   }
 
-  renderTest = currency => {
+  getLabel = currency => {
     if (currency === 'usd') {
       return (
         <label className='mr-sm-2 ml-sm-2 mr-2 ml-2'>
@@ -121,7 +121,7 @@ export class CurrencySwitchForm extends Component {
     const { currency } = this.props.conversionData;
     const { errors } = this.state;
     const selectedOption = SELECT_OPTIONS.find(item => item.value === currency);
-    const renderLabel = this.renderTest.bind(null, currency);
+    const renderLabel = this.getLabel.bind(null, currency);
 
     return (
       <Fragment>

@@ -30,7 +30,7 @@ export class AddFinancialRecordFrom extends Component {
     super(props);
 
     this.state = {
-      sum             : 100.00.toFixed(2),
+      amount          : '100.00',
       description     : '',
       selectedType    : SELECT_OPTIONS.types[0],
       selectedCurrency: SELECT_OPTIONS.currencies[0]
@@ -46,8 +46,8 @@ export class AddFinancialRecordFrom extends Component {
     }
   }
 
-  handleSumChange = event => {
-    this.setState({ sum: Number(event.target.value).toFixed(2) });
+  handleAmountChange = event => {
+    this.setState({ amount: event.target.value });
   }
 
   handleDescriptionChange = event => {
@@ -57,13 +57,23 @@ export class AddFinancialRecordFrom extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    this.props.addFinancialRecord({
-      type       : this.state.selectedType.value,
-      currency   : this.state.selectedCurrency.value,
-      sum        : this.state.sum,
-      description: this.state.description,
-      createdAt  : moment().unix()
-    });
+    const { selectedType, selectedCurrency, description, amount } = this.state;
+    const financialRecord = {
+      type       : selectedType.value,
+      currency   : selectedCurrency.value,
+      amounts    : {},
+      createdAt  : moment().unix(),
+      description,
+    };
+
+    if (selectedCurrency.value === 'usd') {
+      financialRecord.amounts.usd = parseFloat(Math.abs(amount));
+    }
+    if (selectedCurrency.value === 'eur') {
+      financialRecord.amounts.eur = parseFloat(Math.abs(amount));
+    }
+
+    this.props.addFinancialRecord(financialRecord);
   }
 
   render() {
@@ -93,11 +103,11 @@ export class AddFinancialRecordFrom extends Component {
         </div>
         <div className='form-group col-md-2'>
           <input
-            type='number'
-            className='form-control sum'
-            placeholder='Sum'
-            value={this.state.sum}
-            onChange={this.handleSumChange}
+            type='text'
+            className='form-control amount'
+            placeholder='Amount'
+            value={this.state.amount}
+            onChange={this.handleAmountChange}
           />
         </div>
         <div className='form-group col-md-5'>

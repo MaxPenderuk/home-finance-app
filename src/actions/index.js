@@ -7,6 +7,7 @@ export const REMOVE_FINANTIAL_RECORD       = 'REMOVE_FINANTIAL_RECORD';
 export const LOAD_FINANCIAL_RECORDS_ERROR  = 'LOAD_FINANCIAL_RECORDS_ERROR';
 export const ADD_FINANCIAL_RECORD_ERROR    = 'ADD_FINANCIAL_RECORD_ERROR';
 export const REMOVE_FINANTIAL_RECORD_ERROR = 'REMOVE_FINANTIAL_RECORD_ERROR';
+export const SET_CONVERSION_DATA           = 'SET_CONVERSION_DATA'; 
 
 export function loadFinancialRecords() {
   return async dispatch => {
@@ -17,10 +18,12 @@ export function loadFinancialRecords() {
     const data = await firebase.getFinancialRecords();
 
     if (data.status) {
-      dispatch({
+      return dispatch({
         type: LOAD_FINANCIAL_RECORDS,
         payload: data.financialRecords
       });
+    } else {
+
     }
 
     dispatch({
@@ -32,21 +35,21 @@ export function loadFinancialRecords() {
 
 export function addFinancialRecord({
   type,
+  amounts,
   currency,
-  sum,
   description,
   createdAt
 }) {
   return async dispatch => {
-    const financialRecord = { type, currency, sum, description, createdAt };
+    const financialRecord = { type, currency, description, amounts, createdAt };
     const data = await firebase.setFinancialRecord(financialRecord);
 
     if (data.status) {
-      dispatch({
+      return dispatch({
         type: ADD_FINANCIAL_RECORD,
         payload: {
           ...financialRecord,
-          symbolicId: data.financialRecordId
+          id: data.financialRecordId
         }
       });
     }
@@ -63,7 +66,7 @@ export function removeFinancialRecord(id) {
     const data = await firebase.removeFinancialRecord(id);
 
     if (data.status) {
-      dispatch({
+      return dispatch({
         type: REMOVE_FINANTIAL_RECORD,
         payload: { id }
       });
@@ -72,6 +75,15 @@ export function removeFinancialRecord(id) {
     dispatch({
       type: REMOVE_FINANTIAL_RECORD_ERROR,
       error: data.error
+    });
+  };
+}
+
+export function setConversionData(conversionData) {
+  return async dispatch => {
+    dispatch({
+      type: SET_CONVERSION_DATA,
+      payload: conversionData
     });
   };
 }

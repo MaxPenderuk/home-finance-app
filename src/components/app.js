@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header                 from './header';
+import SwitchCurrencyRow      from '../containers/switch_currency_row';
 import AddFinancialRecordForm from '../containers/add_financial_record_form';
 import FinancialRecordsList   from '../containers/financial_records_list';
 
@@ -12,7 +13,9 @@ export default class App extends Component {
       <div className='pl-2 pr-2'>
         <Header text='Home Finance'/>
         <AddFinancialRecordForm />
-        <FinancialRecordsList />
+        <FinancialRecordsList>
+          <SwitchCurrencyRow />
+        </FinancialRecordsList>
       </div>
     );
   }

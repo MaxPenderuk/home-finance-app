@@ -17,9 +17,9 @@ class Firebase {
       if (data.val() && Object.keys(data.val()).length) {
         const value = data.val();
 
-        Object.keys(value).forEach(key =>
-          financialRecords.push({ ...value[key], symbolicId: key })
-        );
+        for (const key in value) {
+          financialRecords.push({ ...value[key], id: key })
+        }
       }
 
       return {

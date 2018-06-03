@@ -1,0 +1,11 @@
+.currency-select-label {
+  font-size: 14px;
+}
+
+.currency-switch-form {
+  justify-content: flex-end;
+}
+
+.fa-arrow-right {
+  font-size: 11px;
+}

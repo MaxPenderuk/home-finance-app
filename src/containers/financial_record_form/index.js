@@ -7,10 +7,10 @@ import LIVR                   from 'livr';
 import SweetAlert             from 'sweetalert-react';
 import moment                 from 'moment';
 
-import { addFinancialRecord } from '../actions/index';
+import { addFinancialRecord } from '../../actions/index';
 
 import 'react-select/dist/react-select.css';
-import './add_financial_record_form.css';
+import './style.css';
 import 'sweetalert/dist/sweetalert.css';
 
 const SELECT_OPTIONS = {
@@ -24,7 +24,7 @@ const SELECT_OPTIONS = {
   ]
 };
 
-export class AddFinancialRecordFrom extends Component {
+export class FinancialRecordForm extends Component {
   static propTypes = {
     addFinancialRecord: PropTypes.func.isRequired
   };
@@ -205,4 +205,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addFinancialRecord }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(AddFinancialRecordFrom);
+export default connect(null, mapDispatchToProps)(FinancialRecordForm);

@@ -7,14 +7,14 @@ import moment                         from 'moment';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faTimes         from '@fortawesome/fontawesome-free-solid/faTimes';
 
-import { getFinancialRecordsState } from '../selectors/index';
+import { getFinancialRecordsState } from '../../selectors/index';
 
 import {
   loadFinancialRecords,
   removeFinancialRecord
-} from '../actions/index';
+} from '../../actions/index';
 
-import './financial_records_list.css';
+import './style.css';
 
 export class FinancialRecordsList extends Component {
   static propTypes = {

@@ -8,20 +8,20 @@ import SweetAlert             from 'sweetalert-react';
 import debounce               from 'lodash/debounce';
 import FontAwesomeIcon        from '@fortawesome/react-fontawesome';
 
-import { setConversionData }  from '../actions/index';
+import { setConversionData }  from '../../actions/index';
 
 import faArrow from '@fortawesome/fontawesome-free-solid/faArrowRight';
 
 import 'react-select/dist/react-select.css';
 import 'sweetalert/dist/sweetalert.css';
-import './switch_currency_row.css';
+import './style.css';
 
 const SELECT_OPTIONS = [
   { value: 'usd', label: '$' },
   { value: 'eur', label: '€' }
 ];
 
-export class SwitchCurrencyRow extends Component {
+export class CurrencySwitchForm extends Component {
   static propTypes = {
     conversionData   : PropTypes.object.isRequired,
     setConversionData: PropTypes.func.isRequired,
@@ -173,4 +173,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ setConversionData }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SwitchCurrencyRow);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencySwitchForm);

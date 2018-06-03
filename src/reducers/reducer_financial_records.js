@@ -5,7 +5,7 @@ import {
   REMOVE_FINANTIAL_RECORD,
   LOAD_FINANCIAL_RECORDS_ERROR,
   ADD_FINANCIAL_RECORD_ERROR,
-  REMOVE_FINANTIAL_RECORD_ERROR,
+  REMOVE_FINANСIAL_RECORD_ERROR,
   SET_CONVERSION_DATA
 } from '../actions/index';
 
@@ -44,7 +44,7 @@ export default function financialRecords(state = DEFAULT_STATE, action) {
       };
     case LOAD_FINANCIAL_RECORDS_ERROR:
     case ADD_FINANCIAL_RECORD_ERROR:
-    case REMOVE_FINANTIAL_RECORD_ERROR:
+    case REMOVE_FINANСIAL_RECORD_ERROR:
       return {
         ...state,
         error: action.error

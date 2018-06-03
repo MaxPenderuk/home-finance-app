@@ -6,7 +6,7 @@ export const FINANCIAL_RECORDS_LOADING     = 'FINANCIAL_RECORDS_LOADING';
 export const REMOVE_FINANTIAL_RECORD       = 'REMOVE_FINANTIAL_RECORD';
 export const LOAD_FINANCIAL_RECORDS_ERROR  = 'LOAD_FINANCIAL_RECORDS_ERROR';
 export const ADD_FINANCIAL_RECORD_ERROR    = 'ADD_FINANCIAL_RECORD_ERROR';
-export const REMOVE_FINANTIAL_RECORD_ERROR = 'REMOVE_FINANTIAL_RECORD_ERROR';
+export const REMOVE_FINANСIAL_RECORD_ERROR = 'REMOVE_FINANСIAL_RECORD_ERROR';
 export const SET_CONVERSION_DATA           = 'SET_CONVERSION_DATA'; 
 
 export function loadFinancialRecords() {
@@ -22,8 +22,6 @@ export function loadFinancialRecords() {
         type: LOAD_FINANCIAL_RECORDS,
         payload: data.financialRecords
       });
-    } else {
-
     }
 
     dispatch({
@@ -73,7 +71,7 @@ export function removeFinancialRecord(id) {
     }
 
     dispatch({
-      type: REMOVE_FINANTIAL_RECORD_ERROR,
+      type: REMOVE_FINANСIAL_RECORD_ERROR,
       error: data.error
     });
   };

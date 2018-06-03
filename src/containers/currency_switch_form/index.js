@@ -154,7 +154,7 @@ export class CurrencySwitchForm extends Component {
           />
         </form>
         <SweetAlert
-          show={this.state.errorString ? true : false}
+          show={!!this.state.errorString}
           title='Oops!'
           type='error'
           text={this.state.errorString}

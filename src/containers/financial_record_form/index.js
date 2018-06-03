@@ -190,7 +190,7 @@ export class FinancialRecordForm extends Component {
           </div>
         </form>
         <SweetAlert
-          show={this.state.errorString ? true : false}
+          show={!!this.state.errorString}
           title='Oops!'
           type='error'
           text={this.state.errorString}

@@ -3,7 +3,6 @@ import { createSelector } from 'reselect';
 const financialRecordsListSelector = state => state.list;
 const conversionDataSelector = state => state.conversionData;
 
-
 export const getFinancialRecordsState = createSelector(
   [ financialRecordsListSelector, conversionDataSelector ],
   (list, conversionData) => list.map(item => {
